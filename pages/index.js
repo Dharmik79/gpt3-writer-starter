@@ -8,6 +8,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const handleClick = async () => {
     setLoading(true);
+    setOutput("")
     const response = await fetch("../api/ready/", {
       method: "post",
       headers: {
@@ -19,6 +20,7 @@ const Home = () => {
     let data = await response.json();
     setOutput(data.output);
     setLoading(false);
+    setInput("")
   };
 
   return (
