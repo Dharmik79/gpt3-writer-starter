@@ -1,8 +1,14 @@
 import Head from "next/head";
 import Image from "next/image";
 import buildspaceLogo from "../assets/buildspace-logo.png";
-
+import { useState } from "react";
 const Home = () => {
+  const [input, setInput] = useState("");
+
+  const handleClick=()=>{
+    
+  }
+
   return (
     <div className="root">
       <Head>
@@ -21,6 +27,8 @@ const Home = () => {
       <div style={{ flexDirection: "row" }}>
         <div>
           <textarea
+            value={input}
+            onChange={(e) => {setInput(e.target.value)}}
             style={{
               flex: 1,
               height: "50vh",
@@ -35,8 +43,16 @@ const Home = () => {
             placeholder="Write Something"
           />
         </div>
-        <div style={{  display: "flex", alignItems:"center",justifyContent:"center",padding:"10px"}}>
-          <button style={{  padding:"10px"}}>Generate</button>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "10px",
+           
+          }}
+        >
+          <button style={{ padding: "10px"}} onClick={handleClick}>Generate</button>
         </div>
       </div>
     </div>
