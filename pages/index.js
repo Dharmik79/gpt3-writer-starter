@@ -37,8 +37,7 @@ const Home = () => {
             <h2>Writer</h2>
           </div>
         </div>
-      </div>
-      <div style={{ flexDirection: "row" }}>
+        <div style={{ flexDirection: "row" }}>
         <div>
           <textarea
             value={input}
@@ -50,7 +49,7 @@ const Home = () => {
               height: "30vh",
               width: "100vh",
               backgroundColor: "black",
-              color: "white",
+              color: "grey",
               padding: "15px",
               fontWeight: "600",
               fontSize: "20px",
@@ -64,7 +63,7 @@ const Home = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            padding: "10px",
+            padding: "4px",
           }}
         >
           {input && !loading && (
@@ -94,40 +93,43 @@ const Home = () => {
             </button>
           )}
         </div>
+        {output && (
+          <div style={{ flexDirection: "row" }}>
+            <div
+              style={{
+                backgroundColor: "black",
+                color: "white",
+                padding: "15px",
+                fontWeight: "600",
+                fontSize: "40px",
+                borderRadius: 10,
+                textAlign: "center",
+              }}
+            >
+              Output
+            </div>
+            <div
+              style={{
+                padding: "15px",
+                borderWidth: "2px",
+                backgroundColor: "black",
+                color: "grey",
+                padding: "15px",
+                fontWeight: "600",
+                fontSize: "20px",
+                borderRadius: 10,
+                textAlign: "center",
+                borderColor: "green",
+              }}
+            >
+              {output}
+            </div>
+          </div>
+        )}
       </div>
-      {output && (
-        <div style={{ flexDirection: "row" }}>
-          <div
-            style={{
-              backgroundColor: "black",
-              color: "white",
-              padding: "15px",
-              fontWeight: "600",
-              fontSize: "40px",
-              borderRadius: 10,
-              textAlign: "center",
-            }}
-          >
-            Output
-          </div>
-          <div
-            style={{
-              padding: "15px",
-              borderWidth: "2px",
-              backgroundColor: "black",
-              color: "white",
-              padding: "15px",
-              fontWeight: "600",
-              fontSize: "20px",
-              borderRadius: 10,
-              textAlign: "center",
-              borderColor: "green",
-            }}
-          >
-            {output}
-          </div>
-        </div>
-      )}
+   
+      </div>
+     
     </div>
   );
 };
