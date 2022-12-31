@@ -4,10 +4,21 @@ import buildspaceLogo from "../assets/buildspace-logo.png";
 import { useState } from "react";
 const Home = () => {
   const [input, setInput] = useState("");
+  const [output, setOutput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const handleClick = async () => {
+    setLoading(true);
+    const response = await fetch("../api/ready/", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ input }),
+    });
 
-  const handleClick = () => {
-
-    console.log("Cliked")
+    let data = await response.json();
+    setOutput(data.output);
+    setLoading(false);
   };
 
   return (
@@ -34,7 +45,7 @@ const Home = () => {
             }}
             style={{
               flex: 1,
-              height: "50vh",
+              height: "30vh",
               width: "100vh",
               backgroundColor: "black",
               color: "white",
@@ -54,18 +65,67 @@ const Home = () => {
             padding: "10px",
           }}
         >
-          {input && <button
-            style={{
-              padding: "10px",
-              backgroundColor: "#c85000",
-              borderRadius:20
-            }}
-            onClick={handleClick}
-          >
-            Generate
-          </button>}
+          {input && !loading && (
+            <button
+              style={{
+                padding: "10px",
+                backgroundColor: "#c85000",
+                borderRadius: 20,
+                fontSize:"20px"
+              }}
+              onClick={handleClick}
+            >
+              Generate
+            </button>
+          )}
+          {loading && (
+            <button
+              style={{
+                padding: "10px",
+                backgroundColor: "#c85000",
+                borderRadius: 20,
+                fontSize:"20px"
+              }}
+              onClick={handleClick}
+            >
+              Loading...
+            </button>
+          )}
         </div>
       </div>
+      {output && (
+        <div style={{ flexDirection: "row" }}>
+          <div
+            style={{
+              backgroundColor: "black",
+              color: "white",
+              padding: "15px",
+              fontWeight: "600",
+              fontSize: "40px",
+              borderRadius: 10,
+              textAlign: "center",
+            }}
+          >
+            Output
+          </div>
+          <div
+            style={{
+              padding: "15px",
+              borderWidth: "2px",
+              backgroundColor: "black",
+              color: "white",
+              padding: "15px",
+              fontWeight: "600",
+              fontSize: "20px",
+              borderRadius: 10,
+              textAlign: "center",
+              borderColor: "green",
+            }}
+          >
+            {output}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
