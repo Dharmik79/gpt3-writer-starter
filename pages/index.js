@@ -5,9 +5,10 @@ import { useState } from "react";
 const Home = () => {
   const [input, setInput] = useState("");
 
-  const handleClick=()=>{
-    
-  }
+  const handleClick = () => {
+
+    console.log("Cliked")
+  };
 
   return (
     <div className="root">
@@ -28,7 +29,9 @@ const Home = () => {
         <div>
           <textarea
             value={input}
-            onChange={(e) => {setInput(e.target.value)}}
+            onChange={(e) => {
+              setInput(e.target.value);
+            }}
             style={{
               flex: 1,
               height: "50vh",
@@ -49,10 +52,18 @@ const Home = () => {
             alignItems: "center",
             justifyContent: "center",
             padding: "10px",
-           
           }}
         >
-          <button style={{ padding: "10px"}} onClick={handleClick}>Generate</button>
+          {input && <button
+            style={{
+              padding: "10px",
+              backgroundColor: "#c85000",
+              borderRadius:20
+            }}
+            onClick={handleClick}
+          >
+            Generate
+          </button>}
         </div>
       </div>
     </div>
